@@ -11,7 +11,7 @@ using std::rand;
 /*  ---- IMPORTAÇÕES DE CHRONO ----  */
 using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
-using std::chrono::nanoseconds;
+using std::chrono::microseconds;
 
 /*  ---- IMPORTAÇÕES DE IOSTREAM ----  */
 using std::cout;
@@ -37,6 +37,6 @@ void vSwapElements(Node* ptrNode1, Node* ptrNode2);
 
 /*  ---- FUNÇÕES EXTRAS PARA TESTES ----  */
 Node* ptrGenerateRandomList(int iSize);
-int64_t iRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList));
+void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList));
 
 #endif

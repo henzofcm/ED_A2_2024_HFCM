@@ -41,5 +41,8 @@ void vBubbleSort(Node*& ptrList)
 
 int main(void)
 {
+    // Faz 100 ordenações com listas de tamanho 10000
+    vRandomTests(100, 10000, vBubbleSort);
+
     return 0;
 }

@@ -122,11 +122,8 @@ Node* ptrGenerateRandomList(int iSize)
     return ptrNewList;
 }
 
-int64_t iRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
-{
-    // Salvará o tempo total gasto em todas iterações
-    int64_t iTotalTime = 0;
-    
+void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
+{   
     for (int i = 0; i < iAmount; i++)
     {
         // Gera uma lista
@@ -138,12 +135,12 @@ int64_t iRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
         auto aTimeEnd = high_resolution_clock::now();
 
         // E adiciona ao tempo total
-        auto aDuration = duration_cast<nanoseconds> (aTimeEnd - aTimeStart);
-        iTotalTime += aDuration.count();
+        auto aDuration = duration_cast<microseconds> (aTimeEnd - aTimeStart);
+        cout << aDuration.count() << endl;
 
         // Limpa da memória
         vDeleteList(ptrList);
     }
 
-    return iTotalTime;
+    return;
 }

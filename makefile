@@ -1,8 +1,8 @@
 all: clean
 
 test: bubblesort selectsort
-		./bubblesort
-		./selectsort
+		bubblesort > bubbleTime.txt
+		selectsort > selectTime.txt
 
 bubblesort: linkedlists.o bubblesort.cpp
 		g++ linkedlists.o bubblesort.cpp -o bubblesort
