@@ -108,6 +108,53 @@ void vSwapElements(Node* ptrNode1, Node* ptrNode2)
     ptrNode2->iValue = iTempValue;
 }
 
+int iFindElement(Node* ptrList, int iPosition)
+{
+    // Tratamento de erros
+    if (iPosition < 0)
+    {
+        cout << "Posição inexistente! \n";
+        return -1;
+    }
+
+    if (ptrList == nullptr)
+    {
+        cout << "Lista vazia! \n";
+        return -1;
+    }
+
+    // Acha o elemento naquela posição
+    Node* ptrFoo = ptrList;
+
+    for (int i = 0; i < iPosition; i++)
+    {
+        ptrFoo = ptrFoo->ptrNext;
+
+        // Caso termine a lista antes da hora
+        if (ptrFoo == nullptr)
+        {
+            cout << "Posição inexistente! \n";
+            return -1;
+        }
+    }
+
+    return ptrFoo->iValue;
+}
+
+Node* ptrConvertArrayList(int arriSorted[], int iSize)
+{
+    // Itera sobre o array em ordem reversa para adicionar mais rápido
+    Node* ptrList = ptrCreateList();
+
+    for (int i = iSize - 1; i > -1; i--)
+    {
+        vAddElemFront(ptrList, arriSorted[i]);
+    }
+
+    return ptrList;
+}
+
+
 
 Node* ptrGenerateRandomList(int iSize)
 {

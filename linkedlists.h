@@ -34,6 +34,8 @@ void vAddElemEnd(Node*& ptrList, int iValue);
 void vPrintList(Node* ptrList);
 void vDeleteList(Node*& ptrList);
 void vSwapElements(Node* ptrNode1, Node* ptrNode2);
+int iFindElement(Node* ptrList, int iPosition);
+Node* ptrConvertArrayList(int arriSorted[], int iSize);
 
 /*  ---- FUNÇÕES EXTRAS PARA TESTES ----  */
 Node* ptrGenerateRandomList(int iSize);
