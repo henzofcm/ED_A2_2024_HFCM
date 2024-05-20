@@ -116,7 +116,7 @@ Node* ptrGenerateRandomList(int iSize)
 
     for (int i = 0; i < iSize; i++)
     {
-        vAddElemFront(ptrNewList, rand());
+        vAddElemFront(ptrNewList, randint<int>(1, 100));
     }
 
     return ptrNewList;
@@ -144,3 +144,4 @@ void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
 
     return;
 }
+

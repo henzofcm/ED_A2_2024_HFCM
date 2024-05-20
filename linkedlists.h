@@ -1,12 +1,12 @@
 #ifndef LINKEDLISTS
 #define LINKEDLISTS
 
-#include <random>
+#include <experimental/random>
 #include <chrono>
 #include <iostream>
 
 /*  ---- IMPORTAÇÕES DE RANDOM ----  */
-using std::rand;
+using std::experimental::randint;
 
 /*  ---- IMPORTAÇÕES DE CHRONO ----  */
 using std::chrono::high_resolution_clock;
