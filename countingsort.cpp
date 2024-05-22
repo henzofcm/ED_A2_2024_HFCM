@@ -25,26 +25,26 @@ void vCountingSort(Node*& ptrList)
     for (int i = 0; i < iSize; i++)
     {
         // Acha o elemento naquela posição
-        int iElemValue = iFindElement(ptrList, i);
+        int iElemValue = LinkedList::iFindElement(ptrList, i);
 
         // E conta sua frequência
         arriCounter[iElemValue] += 1;
     }
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node* ptrSortedList = ptrCreateList();
+    Node* ptrSortedList = LinkedList::ptrCreateList();
 
     for (int k = iMaxElem; k != -1; k--)
     {
         // Adiciona-o todas vezes que foram contadas
         for (int i = arriCounter[k]; i > 0; i--)
         {
-            vAddElemFront(ptrSortedList, k);
+            LinkedList::vAddElemFront(ptrSortedList, k);
         }
     }
 
     // Apaga a anterior e aponta para a nova
-    vDeleteList(ptrList);
+    LinkedList::vDeleteList(ptrList);
     ptrList = ptrSortedList;
 }
 
@@ -52,7 +52,7 @@ void vShowCountingSort(Node*& ptrList)
 {
     // Apresenta a lista desordenada
     cout << "A lista original: ";
-    vPrintList(ptrList);
+    LinkedList::vPrintList(ptrList);
 
     Node* ptrFoo = ptrList;
     int iSize = 0;
@@ -80,7 +80,7 @@ void vShowCountingSort(Node*& ptrList)
     for (int i = 0; i < iSize; i++)
     {
         // Acha o elemento naquela posição
-        int iElemValue = iFindElement(ptrList, i);
+        int iElemValue = LinkedList::iFindElement(ptrList, i);
 
         // E conta sua frequência
         arriCounter[iElemValue] += 1;
@@ -95,30 +95,30 @@ void vShowCountingSort(Node*& ptrList)
     cout << endl;
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node* ptrSortedList = ptrCreateList();
+    Node* ptrSortedList = LinkedList::ptrCreateList();
 
     for (int k = iMaxElem; k != -1; k--)
     {
         // Adiciona-o todas vezes que foram contadas
         for (int i = arriCounter[k]; i > 0; i--)
         {
-            vAddElemFront(ptrSortedList, k);
+            LinkedList::vAddElemFront(ptrSortedList, k);
         }
     }
 
     // Apaga a anterior e aponta para a nova
-    vDeleteList(ptrList);
+    LinkedList::vDeleteList(ptrList);
     ptrList = ptrSortedList;
 
     // Mostra a nova lista
     cout << "Entao recriamos a lista em ordem: ";
-    vPrintList(ptrList);
+    LinkedList::vPrintList(ptrList);
 }
 
 
 int main(void)
 {
-    Node* ptrList = ptrGenerateRandomList(5);
+    Node* ptrList = RandomTests::ptrGenerateRandomList(5);
 
     // Faz o sort, mostrando cada etapa
     vShowCountingSort(ptrList);

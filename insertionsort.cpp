@@ -19,7 +19,7 @@ void vInsertionSort(Node*& ptrList)
         while(ptrElem->ptrLast != nullptr && ptrElem->ptrLast->iValue > ptrElem->iValue)
         {
             // Troca os elementos e move o ponteiro para trás
-            vSwapElements(ptrElem, ptrElem->ptrLast);
+            LinkedList::vSwapElements(ptrElem, ptrElem->ptrLast);
             ptrElem = ptrElem->ptrLast;
         }
 
@@ -33,7 +33,7 @@ void vInsertionSort(Node*& ptrList)
 int main(void)
 {
     // Faz 100 ordenações com listas de tamanho 10000
-    vRandomTests(100, 10000, vInsertionSort);
+    RandomTests::vRandomTests(100, 10000, vInsertionSort);
 
     return 0;
 }

@@ -1,5 +1,7 @@
 #include "linkedlists.h"
 
+namespace LinkedList
+{
 
 Node* ptrCreateList(void)
 {
@@ -154,16 +156,19 @@ Node* ptrConvertArrayList(int arriSorted[], int iSize)
     return ptrList;
 }
 
+}
 
+namespace RandomTests
+{
 
 Node* ptrGenerateRandomList(int iSize)
 {
     // Cria uma lista com elementos aleatórios de tamanho iSize
-    Node* ptrNewList = ptrCreateList();
+    Node* ptrNewList = LinkedList::ptrCreateList();
 
     for (int i = 0; i < iSize; i++)
     {
-        vAddElemFront(ptrNewList, randint<int>(1, 100));
+        LinkedList::vAddElemFront(ptrNewList, randint<int>(1, 100));
     }
 
     return ptrNewList;
@@ -186,9 +191,10 @@ void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
         cout << aDuration.count() << endl;
 
         // Limpa da memória
-        vDeleteList(ptrList);
+        LinkedList::vDeleteList(ptrList);
     }
 
     return;
 }
 
+}

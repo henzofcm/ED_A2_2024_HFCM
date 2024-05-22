@@ -22,7 +22,7 @@ void vBubbleSort(Node*& ptrList)
             if (ptrFoo->iValue > ptrFoo->ptrNext->iValue)
             {
                 bSwapped = true;
-                vSwapElements(ptrFoo->ptrNext, ptrFoo);
+                LinkedList::vSwapElements(ptrFoo->ptrNext, ptrFoo);
             }
 
             ptrFoo = ptrFoo->ptrNext;
@@ -42,7 +42,7 @@ void vBubbleSort(Node*& ptrList)
 int main(void)
 {
     // Faz 100 ordenações com listas de tamanho 10000
-    vRandomTests(100, 10000, vBubbleSort);
+    RandomTests::vRandomTests(100, 10000, vBubbleSort);
 
     return 0;
 }

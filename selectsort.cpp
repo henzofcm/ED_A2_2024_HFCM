@@ -27,7 +27,7 @@ void vSelectSort(Node*& ptrList)
         }
 
         // Troca-os de lugar
-        vSwapElements(ptrUnsortedList, ptrHolder);
+        LinkedList::vSwapElements(ptrUnsortedList, ptrHolder);
 
         // Por fim, fazem-nos começar numa nova lista menor
         ptrUnsortedList = ptrUnsortedList->ptrNext;
@@ -39,7 +39,7 @@ void vSelectSort(Node*& ptrList)
 int main(void)
 {
     // Faz 100 ordenações com listas de tamanho 10000
-    vRandomTests(100, 10000, vSelectSort);
+    RandomTests::vRandomTests(100, 10000, vSelectSort);
 
     return 0;
 }

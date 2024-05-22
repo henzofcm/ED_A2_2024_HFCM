@@ -27,18 +27,24 @@ typedef struct Node
 
 
 /*  ---- FUNÇÕES BASE DE LISTA DUPLAMENTE ENCADEADA ----  */
-Node* ptrCreateList(void);
-Node* ptrCreateNode(int iValue);
-void vAddElemFront(Node*& ptrList, int iValue);
-void vAddElemEnd(Node*& ptrList, int iValue);
-void vPrintList(Node* ptrList);
-void vDeleteList(Node*& ptrList);
-void vSwapElements(Node* ptrNode1, Node* ptrNode2);
-int iFindElement(Node* ptrList, int iPosition);
-Node* ptrConvertArrayList(int arriSorted[], int iSize);
+namespace LinkedList
+{
+    Node* ptrCreateList(void);
+    Node* ptrCreateNode(int iValue);
+    void vAddElemFront(Node*& ptrList, int iValue);
+    void vAddElemEnd(Node*& ptrList, int iValue);
+    void vPrintList(Node* ptrList);
+    void vDeleteList(Node*& ptrList);
+    void vSwapElements(Node* ptrNode1, Node* ptrNode2);
+    int iFindElement(Node* ptrList, int iPosition);
+    Node* ptrConvertArrayList(int arriSorted[], int iSize);
+}
 
 /*  ---- FUNÇÕES EXTRAS PARA TESTES ----  */
-Node* ptrGenerateRandomList(int iSize);
-void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList));
+namespace RandomTests
+{
+    Node* ptrGenerateRandomList(int iSize);
+    void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList));
+}
 
 #endif
