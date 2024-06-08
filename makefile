@@ -5,17 +5,14 @@ test: bubblesort selectsort insertionsort
 		selectsort > selectTime.txt
 		insertionsort > insertionTime.txt
 
-bubblesort: linkedlists.o bubblesort.cpp
-		g++ linkedlists.o bubblesort.cpp -o bubblesort
+bubblesort: bubblesort.cpp
+		g++ bubblesort.cpp -o bubblesort
 
-selectsort: linkedlists.o selectsort.cpp
-		g++ linkedlists.o selectsort.cpp -o selectsort
+selectsort: selectsort.cpp
+		g++ selectsort.cpp -o selectsort
 
-insertionsort: linkedlists.o insertionsort.cpp
-		g++ linkedlists.o insertionsort.cpp -o insertionsort
-
-linkedlists.o: linkedlists.cpp linkedlists.h
-		g++ linkedlists.cpp -c
+insertionsort: insertionsort.cpp
+		g++ insertionsort.cpp -o insertionsort
 
 clean:
-		del bubblesort.exe selectsort.exe insertionsort.exe linkedlists.o
+		del bubblesort.exe selectsort.exe insertionsort.exe

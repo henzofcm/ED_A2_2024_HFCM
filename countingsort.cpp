@@ -1,8 +1,9 @@
 #include "linkedlists.h"
 
-void vCountingSort(Node*& ptrList)
+template <typename T>
+void vCountingSort(Node<T>*& ptrList)
 {
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
     int iSize = 0;
     int iMaxElem = 0;
 
@@ -25,36 +26,37 @@ void vCountingSort(Node*& ptrList)
     for (int i = 0; i < iSize; i++)
     {
         // Acha o elemento naquela posição
-        int iElemValue = LinkedList::iFindElement(ptrList, i);
+        int iElemValue = LinkedList::iFindElement<T>(ptrList, i);
 
         // E conta sua frequência
         arriCounter[iElemValue] += 1;
     }
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node* ptrSortedList = LinkedList::ptrCreateList();
+    Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
 
     for (int k = iMaxElem; k != -1; k--)
     {
         // Adiciona-o todas vezes que foram contadas
         for (int i = arriCounter[k]; i > 0; i--)
         {
-            LinkedList::vAddElemFront(ptrSortedList, k);
+            LinkedList::vAddElemFront<T>(ptrSortedList, k);
         }
     }
 
     // Apaga a anterior e aponta para a nova
-    LinkedList::vDeleteList(ptrList);
+    LinkedList::vDeleteList<T>(ptrList);
     ptrList = ptrSortedList;
 }
 
-void vShowCountingSort(Node*& ptrList)
+template <typename T>
+void vShowCountingSort(Node<T>*& ptrList)
 {
     // Apresenta a lista desordenada
     cout << "A lista original: ";
     LinkedList::vPrintList(ptrList);
 
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
     int iSize = 0;
     int iMaxElem = 0;
 
@@ -80,7 +82,7 @@ void vShowCountingSort(Node*& ptrList)
     for (int i = 0; i < iSize; i++)
     {
         // Acha o elemento naquela posição
-        int iElemValue = LinkedList::iFindElement(ptrList, i);
+        int iElemValue = LinkedList::iFindElement<T>(ptrList, i);
 
         // E conta sua frequência
         arriCounter[iElemValue] += 1;
@@ -95,7 +97,7 @@ void vShowCountingSort(Node*& ptrList)
     cout << endl;
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node* ptrSortedList = LinkedList::ptrCreateList();
+    Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
 
     for (int k = iMaxElem; k != -1; k--)
     {
@@ -118,7 +120,7 @@ void vShowCountingSort(Node*& ptrList)
 
 int main(void)
 {
-    Node* ptrList = RandomTests::ptrGenerateRandomList(5);
+    Node<int>* ptrList = RandomTests::ptrGenerateRandomList<int>(5);
 
     // Faz o sort, mostrando cada etapa
     vShowCountingSort(ptrList);

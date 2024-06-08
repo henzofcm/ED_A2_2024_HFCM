@@ -1,14 +1,15 @@
 #include "linkedlists.h"
 
-void vInsertionSort(Node*& ptrList)
+template <typename T>
+void vInsertionSort(Node<T>*& ptrList)
 {
     // Caso seja vazia, não há nada a fazer
     if (ptrList == nullptr)
         return;
 
     // Ponteiros que percorrerão a lista
-    Node* ptrFoo = ptrList;
-    Node* ptrElem = ptrFoo;
+    Node<T>* ptrFoo = ptrList;
+    Node<T>* ptrElem = ptrFoo;
 
     // Enquanto a lista não for toda percorrida
     while(ptrFoo != nullptr)
@@ -33,7 +34,7 @@ void vInsertionSort(Node*& ptrList)
 int main(void)
 {
     // Faz 100 ordenações com listas de tamanho 10000
-    RandomTests::vRandomTests(100, 10000, vInsertionSort);
+    RandomTests::vRandomTests<int>(100, 10000, vInsertionSort);
 
     return 0;
 }

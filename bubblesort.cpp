@@ -1,14 +1,15 @@
 #include "linkedlists.h"
 
-void vBubbleSort(Node*& ptrList)
+template <typename T>
+void vBubbleSort(Node<T>*& ptrList)
 {
     // Caso seja vazia, não há nada a fazer
     if (ptrList == nullptr)
         return;
 
     // Ponteiros que percorrerão a lista
-    Node* ptrSortedList = nullptr;
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrSortedList = nullptr;
+    Node<T>* ptrFoo = ptrList;
 
     // Enquanto a lista não estiver toda organizada
     while (ptrSortedList != ptrList)
@@ -22,7 +23,7 @@ void vBubbleSort(Node*& ptrList)
             if (ptrFoo->iValue > ptrFoo->ptrNext->iValue)
             {
                 bSwapped = true;
-                LinkedList::vSwapElements(ptrFoo->ptrNext, ptrFoo);
+                LinkedList::vSwapElements<T>(ptrFoo->ptrNext, ptrFoo);
             }
 
             ptrFoo = ptrFoo->ptrNext;
@@ -42,7 +43,7 @@ void vBubbleSort(Node*& ptrList)
 int main(void)
 {
     // Faz 100 ordenações com listas de tamanho 10000
-    RandomTests::vRandomTests(100, 10000, vBubbleSort);
+    RandomTests::vRandomTests<int>(100, 10000, vBubbleSort);
 
     return 0;
 }

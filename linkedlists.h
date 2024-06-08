@@ -17,34 +17,56 @@ using std::chrono::microseconds;
 using std::cout;
 using std::endl;
 
-
-typedef struct Node
+template <typename T>
+struct Node
 {
-    int iValue;
+    T iValue;
     Node* ptrNext;
     Node* ptrLast;
-} Node;
+};
 
 
 /*  ---- FUNÇÕES BASE DE LISTA DUPLAMENTE ENCADEADA ----  */
 namespace LinkedList
 {
-    Node* ptrCreateList(void);
-    Node* ptrCreateNode(int iValue);
-    void vAddElemFront(Node*& ptrList, int iValue);
-    void vAddElemEnd(Node*& ptrList, int iValue);
-    void vPrintList(Node* ptrList);
-    void vDeleteList(Node*& ptrList);
-    void vSwapElements(Node* ptrNode1, Node* ptrNode2);
-    int iFindElement(Node* ptrList, int iPosition);
-    Node* ptrConvertArrayList(int arriSorted[], int iSize);
+    template <typename T>
+    Node<T>* ptrCreateList(void);
+
+    template <typename T>
+    Node<T>* ptrCreateNode(T iValue);
+
+    template <typename T>
+    void vAddElemFront(Node<T>*& ptrList, T iValue);
+
+    template <typename T>
+    void vAddElemEnd(Node<T>*& ptrList, T iValue);
+    
+    template <typename T>
+    void vPrintList(Node<T>* ptrList);
+
+    template <typename T>
+    void vDeleteList(Node<T>*& ptrList);
+    
+    template <typename T>
+    void vSwapElements(Node<T>* ptrNode1, Node<T>* ptrNode2);
+    
+    template <typename T>
+    T iFindElement(Node<T>* ptrList, int iPosition);
+    
+    template <typename T>
+    Node<T>* ptrConvertArrayList(int arriSorted[], int iSize);
 }
 
 /*  ---- FUNÇÕES EXTRAS PARA TESTES ----  */
 namespace RandomTests
 {
-    Node* ptrGenerateRandomList(int iSize);
-    void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList));
+    template <typename T>
+    Node<T>* ptrGenerateRandomList(int iSize);
+
+    template <typename T>
+    void vRandomTests(int iAmount, int iSize, void (*fSort)(Node<T>*& ptrList));
 }
+
+#include "linkedlists.tpp"
 
 #endif

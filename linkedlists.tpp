@@ -3,16 +3,18 @@
 namespace LinkedList
 {
 
-Node* ptrCreateList(void)
+template <typename T>
+Node<T>* ptrCreateList(void)
 {
     // Retorna, apropriadamente, uma lista vazia
     return nullptr;
 }
 
-Node* ptrCreateNode(int iValue)
+template <typename T>
+Node<T>* ptrCreateNode(T iValue)
 {
     // Aloca memória para o Node
-    Node* ptrList = (Node*) malloc(sizeof(Node));
+    Node<T>* ptrList = (Node<T>*) malloc(sizeof(Node<T>));
 
     // Atribui valores aos atributos
     ptrList->iValue = iValue;
@@ -22,10 +24,11 @@ Node* ptrCreateNode(int iValue)
     return ptrList;
 }
 
-void vAddElemFront(Node*& ptrList, int iValue)
+template <typename T>
+void vAddElemFront(Node<T>*& ptrList, T iValue)
 {
     // Cria o novo node
-    Node* ptrNewElem = ptrCreateNode(iValue);
+    Node<T>* ptrNewElem = ptrCreateNode(iValue);
 
     // Caso a lista esteja vazia, ela será o novo elemento
     if (ptrList == nullptr)
@@ -40,10 +43,11 @@ void vAddElemFront(Node*& ptrList, int iValue)
     ptrList = ptrNewElem;
 }
 
-void vAddElemEnd(Node*& ptrList, int iValue)
+template <typename T>
+void vAddElemEnd(Node<T>*& ptrList, T iValue)
 {
     // Cria o novo node
-    Node* ptrNewElem = ptrCreateNode(iValue);
+    Node<T>* ptrNewElem = ptrCreateNode(iValue);
 
     // Caso a lista esteja vazia, ela será o novo elemento
     if (ptrList == nullptr)
@@ -53,7 +57,7 @@ void vAddElemEnd(Node*& ptrList, int iValue)
     }
 
     // Percorre toda a lista com um ponteiro indicador
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
 
     while (ptrFoo->ptrNext != nullptr)
     {
@@ -65,10 +69,11 @@ void vAddElemEnd(Node*& ptrList, int iValue)
     ptrList->ptrNext = ptrNewElem;
 }
 
-void vPrintList(Node* ptrList)
+template <typename T>
+void vPrintList(Node<T>* ptrList)
 {
     // Foo para atravessar a lista
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
 
     // Anda elemento a elemento, printando cada um
     // (Se estiver vazia, não printa nada)
@@ -82,9 +87,10 @@ void vPrintList(Node* ptrList)
     cout << endl;
 }
 
-void vDeleteList(Node*& ptrList)
+template <typename T>
+void vDeleteList(Node<T>*& ptrList)
 {
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
 
     // Itera sobre toda a lista
     while (ptrFoo != nullptr)
@@ -100,7 +106,8 @@ void vDeleteList(Node*& ptrList)
     } 
 }
 
-void vSwapElements(Node* ptrNode1, Node* ptrNode2)
+template <typename T>
+void vSwapElements(Node<T>* ptrNode1, Node<T>* ptrNode2)
 {
     // Cria uma variável temporária
     int iTempValue = ptrNode1->iValue;
@@ -110,7 +117,8 @@ void vSwapElements(Node* ptrNode1, Node* ptrNode2)
     ptrNode2->iValue = iTempValue;
 }
 
-int iFindElement(Node* ptrList, int iPosition)
+template <typename T>
+T iFindElement(Node<T>* ptrList, int iPosition)
 {
     // Tratamento de erros
     if (iPosition < 0)
@@ -126,7 +134,7 @@ int iFindElement(Node* ptrList, int iPosition)
     }
 
     // Acha o elemento naquela posição
-    Node* ptrFoo = ptrList;
+    Node<T>* ptrFoo = ptrList;
 
     for (int i = 0; i < iPosition; i++)
     {
@@ -143,10 +151,11 @@ int iFindElement(Node* ptrList, int iPosition)
     return ptrFoo->iValue;
 }
 
-Node* ptrConvertArrayList(int arriSorted[], int iSize)
+template <typename T>
+Node<T>* ptrConvertArrayList(T arriSorted[], int iSize)
 {
     // Itera sobre o array em ordem reversa para adicionar mais rápido
-    Node* ptrList = ptrCreateList();
+    Node<T>* ptrList = ptrCreateList<T>();
 
     for (int i = iSize - 1; i > -1; i--)
     {
@@ -161,10 +170,11 @@ Node* ptrConvertArrayList(int arriSorted[], int iSize)
 namespace RandomTests
 {
 
-Node* ptrGenerateRandomList(int iSize)
+template <typename T>
+Node<T>* ptrGenerateRandomList(int iSize)
 {
     // Cria uma lista com elementos aleatórios de tamanho iSize
-    Node* ptrNewList = LinkedList::ptrCreateList();
+    Node<T>* ptrNewList = LinkedList::ptrCreateList<T>();
 
     for (int i = 0; i < iSize; i++)
     {
@@ -174,12 +184,13 @@ Node* ptrGenerateRandomList(int iSize)
     return ptrNewList;
 }
 
-void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
+template <typename T>
+void vRandomTests(int iAmount, int iSize, void (*fSort)(Node<T>*& ptrList))
 {   
     for (int i = 0; i < iAmount; i++)
     {
         // Gera uma lista
-        Node* ptrList = ptrGenerateRandomList(iSize);
+        Node<T>* ptrList = ptrGenerateRandomList<T>(iSize);
 
         // Mede o tempo
         auto aTimeStart = high_resolution_clock::now();
@@ -191,7 +202,7 @@ void vRandomTests(int iAmount, int iSize, void (*fSort)(Node*& ptrList))
         cout << aDuration.count() << endl;
 
         // Limpa da memória
-        LinkedList::vDeleteList(ptrList);
+        LinkedList::vDeleteList<T>(ptrList);
     }
 
     return;
