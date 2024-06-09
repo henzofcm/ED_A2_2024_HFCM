@@ -65,8 +65,22 @@ void vAddElemEnd(Node<T>*& ptrList, T iValue)
     }
 
     // E adiciona-o no fim da mesma
-    ptrNewElem->ptrLast = ptrList;
-    ptrList->ptrNext = ptrNewElem;
+    ptrNewElem->ptrLast = ptrFoo;
+    ptrFoo->ptrNext = ptrNewElem;
+}
+
+template <typename T>
+void vRmvElemFront(Node<T>*& ptrList)
+{
+    // Salva o próximo na lista
+    Node<T>* ptrFoo = ptrList->ptrNext;
+
+    // Apaga o primeiro elemento
+    free(ptrList);
+
+    // Atualiza o começo da lista
+    ptrFoo->ptrLast = nullptr;
+    ptrList = ptrFoo;
 }
 
 template <typename T>
@@ -103,7 +117,9 @@ void vDeleteList(Node<T>*& ptrList)
 
         // Avança o Foo
         ptrFoo = ptrList;
-    } 
+    }
+    
+    ptrList = nullptr;
 }
 
 template <typename T>
@@ -171,10 +187,10 @@ namespace RandomTests
 {
 
 template <typename T>
-Node<T>* ptrGenerateRandomList(int iSize)
+LinkedList::Node<T>* ptrGenerateRandomList(int iSize)
 {
     // Cria uma lista com elementos aleatórios de tamanho iSize
-    Node<T>* ptrNewList = LinkedList::ptrCreateList<T>();
+    LinkedList::Node<T>* ptrNewList = LinkedList::ptrCreateList<T>();
 
     for (int i = 0; i < iSize; i++)
     {
@@ -185,12 +201,12 @@ Node<T>* ptrGenerateRandomList(int iSize)
 }
 
 template <typename T>
-void vRandomTests(int iAmount, int iSize, void (*fSort)(Node<T>*& ptrList))
+void vRandomTests(int iAmount, int iSize, void (*fSort)(LinkedList::Node<T>*& ptrList))
 {   
     for (int i = 0; i < iAmount; i++)
     {
         // Gera uma lista
-        Node<T>* ptrList = ptrGenerateRandomList<T>(iSize);
+        LinkedList::Node<T>* ptrList = ptrGenerateRandomList<T>(iSize);
 
         // Mede o tempo
         auto aTimeStart = high_resolution_clock::now();

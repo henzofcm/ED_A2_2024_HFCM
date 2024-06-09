@@ -17,18 +17,18 @@ using std::chrono::microseconds;
 using std::cout;
 using std::endl;
 
-template <typename T>
-struct Node
-{
-    T iValue;
-    Node* ptrNext;
-    Node* ptrLast;
-};
-
 
 /*  ---- FUNÇÕES BASE DE LISTA DUPLAMENTE ENCADEADA ----  */
 namespace LinkedList
 {
+    template <typename T>
+    struct Node
+    {
+        T iValue;
+        Node* ptrNext;
+        Node* ptrLast;
+    };
+
     template <typename T>
     Node<T>* ptrCreateList(void);
 
@@ -61,10 +61,10 @@ namespace LinkedList
 namespace RandomTests
 {
     template <typename T>
-    Node<T>* ptrGenerateRandomList(int iSize);
+    LinkedList::Node<T>* ptrGenerateRandomList(int iSize);
 
     template <typename T>
-    void vRandomTests(int iAmount, int iSize, void (*fSort)(Node<T>*& ptrList));
+    void vRandomTests(int iAmount, int iSize, void (*fSort)(LinkedList::Node<T>*& ptrList));
 }
 
 #include "linkedlists.tpp"
