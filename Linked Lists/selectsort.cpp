@@ -1,18 +1,18 @@
-#include "linkedlists.h"
+#include "linkedlists.hpp"
 
 template <typename T>
-void vSelectSort(Node<T>*& ptrList)
+void vSelectSort(LinkedList::Node<T>*& ptrList)
 {
     // Caso for vazia, não há nada a fazer
     if (ptrList == nullptr)
         return;
 
     // Ponteiros que percorrerão a lista
-    Node<T>* ptrUnsortedList = ptrList;
-    Node<T>* ptrFoo = ptrList;
+    LinkedList::Node<T>* ptrUnsortedList = ptrList;
+    LinkedList::Node<T>* ptrFoo = ptrList;
 
     // Holder para o menor elemento encontrado em cada loop
-    Node<T>* ptrHolder = ptrList;
+    LinkedList::Node<T>* ptrHolder = ptrList;
 
     while (ptrUnsortedList->ptrNext != nullptr)
     {

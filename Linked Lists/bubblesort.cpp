@@ -1,15 +1,15 @@
-#include "linkedlists.h"
+#include "linkedlists.hpp"
 
 template <typename T>
-void vBubbleSort(Node<T>*& ptrList)
+void vBubbleSort(LinkedList::Node<T>*& ptrList)
 {
     // Caso seja vazia, não há nada a fazer
     if (ptrList == nullptr)
         return;
 
     // Ponteiros que percorrerão a lista
-    Node<T>* ptrSortedList = nullptr;
-    Node<T>* ptrFoo = ptrList;
+    LinkedList::Node<T>* ptrSortedList = nullptr;
+    LinkedList::Node<T>* ptrFoo = ptrList;
 
     // Enquanto a lista não estiver toda organizada
     while (ptrSortedList != ptrList)

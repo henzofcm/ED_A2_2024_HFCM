@@ -1,9 +1,9 @@
-#include "linkedlists.h"
+#include "linkedlists.hpp"
 
 template <typename T>
-void vCountingSort(Node<T>*& ptrList)
+void vCountingSort(LinkedList::Node<T>*& ptrList)
 {
-    Node<T>* ptrFoo = ptrList;
+    LinkedList::Node<T>* ptrFoo = ptrList;
     int iSize = 0;
     int iMaxElem = 0;
 
@@ -33,7 +33,7 @@ void vCountingSort(Node<T>*& ptrList)
     }
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
+    LinkedList::Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
 
     for (int k = iMaxElem; k != -1; k--)
     {
@@ -50,13 +50,13 @@ void vCountingSort(Node<T>*& ptrList)
 }
 
 template <typename T>
-void vShowCountingSort(Node<T>*& ptrList)
+void vShowCountingSort(LinkedList::Node<T>*& ptrList)
 {
     // Apresenta a lista desordenada
     cout << "A lista original: ";
     LinkedList::vPrintList(ptrList);
 
-    Node<T>* ptrFoo = ptrList;
+    LinkedList::Node<T>* ptrFoo = ptrList;
     int iSize = 0;
     int iMaxElem = 0;
 
@@ -97,7 +97,7 @@ void vShowCountingSort(Node<T>*& ptrList)
     cout << endl;
 
     // Cria uma nova lista e insere os elementos já em ordem
-    Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
+    LinkedList::Node<T>* ptrSortedList = LinkedList::ptrCreateList<T>();
 
     for (int k = iMaxElem; k != -1; k--)
     {
@@ -120,7 +120,7 @@ void vShowCountingSort(Node<T>*& ptrList)
 
 int main(void)
 {
-    Node<int>* ptrList = RandomTests::ptrGenerateRandomList<int>(5);
+    LinkedList::Node<int>* ptrList = RandomTests::ptrGenerateRandomList<int>(5);
 
     // Faz o sort, mostrando cada etapa
     vShowCountingSort(ptrList);

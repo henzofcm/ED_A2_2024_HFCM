@@ -1,15 +1,15 @@
-#include "linkedlists.h"
+#include "linkedlists.hpp"
 
 template <typename T>
-void vInsertionSort(Node<T>*& ptrList)
+void vInsertionSort(LinkedList::Node<T>*& ptrList)
 {
     // Caso seja vazia, não há nada a fazer
     if (ptrList == nullptr)
         return;
 
     // Ponteiros que percorrerão a lista
-    Node<T>* ptrFoo = ptrList;
-    Node<T>* ptrElem = ptrFoo;
+    LinkedList::Node<T>* ptrFoo = ptrList;
+    LinkedList::Node<T>* ptrElem = ptrFoo;
 
     // Enquanto a lista não for toda percorrida
     while(ptrFoo != nullptr)
