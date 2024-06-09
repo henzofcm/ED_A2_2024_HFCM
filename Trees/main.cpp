@@ -1,22 +1,40 @@
 #include "tree.hpp"
+#include <fstream>
+
+void vRecordData(std::string strName, int iAmount, int iSize, void (*fFunc)(int iAmount, int iSize))
+{
+    // Redireciona cout para um arquivo
+    std::ofstream ofFile(strName);
+    std::cout.rdbuf(ofFile.rdbuf());
+
+    // Mede o tempo de fFunc de iAmount objetos com iSize elementos
+    fFunc(iAmount, iSize);
+    ofFile.close();
+}
 
 int main(void)
 {
-    Tree::Node* ptrTree = Tree::ptrCreateNode(10);
-    Tree::vInsertNode(ptrTree, 8);
-    Tree::vInsertNode(ptrTree, 4);
-    Tree::vInsertNode(ptrTree, 2);
-    Tree::vInsertNode(ptrTree, 1);
-    Tree::vInsertNode(ptrTree, 12);
-    Tree::vInsertNode(ptrTree, 11);
-    Tree::vInsertNode(ptrTree, 16);
-    Tree::vInsertNode(ptrTree, 7);
-    Tree::vInsertNode(ptrTree, 15);
-    Tree::vInsertNode(ptrTree, 21);
-    Tree::vInsertNode(ptrTree, 3);
-    Tree::vInsertNode(ptrTree, 9);
+    // Mede o tempo de criação de 100 árvores com 1000 elementos
+    vRecordData("treeTime.txt", 100, 10000, RandomTrees::vRandomTreesTime);
 
-    Tree::vPrintTree(ptrTree, 0);
-    cout << endl << Tree::ptrSearchNodeBFS(ptrTree, 15)->iValue << endl;
-    Tree::vDeleteTree(ptrTree);
+    // Mede o tempo de criação de 100 listas com 1000 elementos
+    vRecordData("listTime.txt", 100, 10000, RandomLists::vRandomListsTime<int>);
+
+
+    // Redireciona cout
+    std::ofstream ofFile1("treeDFS.txt");
+    std::cout.rdbuf(ofFile1.rdbuf());
+
+    // Mede o tempo de busca em árvores por DFS
+    RandomTrees::vRandomTests(100, 10000, Tree::ptrSearchNodeDFS);
+    ofFile1.close();
+
+
+    // Redireciona cout
+    std::ofstream ofFile2("treeBFS.txt");
+    std::cout.rdbuf(ofFile2.rdbuf());
+
+    // Mede o tempo de busca em árvores por BFS
+    RandomTrees::vRandomTests(100, 10000, Tree::ptrSearchNodeBFS);
+    ofFile2.close();
 }

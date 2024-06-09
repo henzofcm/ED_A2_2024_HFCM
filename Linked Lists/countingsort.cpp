@@ -120,7 +120,7 @@ void vShowCountingSort(LinkedList::Node<T>*& ptrList)
 
 int main(void)
 {
-    LinkedList::Node<int>* ptrList = RandomTests::ptrGenerateRandomList<int>(5);
+    LinkedList::Node<int>* ptrList = RandomLists::ptrGenerateRandomList<int>(5);
 
     // Faz o sort, mostrando cada etapa
     vShowCountingSort(ptrList);

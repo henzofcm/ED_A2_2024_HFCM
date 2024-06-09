@@ -183,7 +183,7 @@ Node<T>* ptrConvertArrayList(T arriSorted[], int iSize)
 
 }
 
-namespace RandomTests
+namespace RandomLists
 {
 
 template <typename T>
@@ -194,7 +194,7 @@ LinkedList::Node<T>* ptrGenerateRandomList(int iSize)
 
     for (int i = 0; i < iSize; i++)
     {
-        LinkedList::vAddElemFront(ptrNewList, randint<int>(1, 100));
+        LinkedList::vAddElemFront(ptrNewList, randint<T>(1, 100));
     }
 
     return ptrNewList;
@@ -223,5 +223,26 @@ void vRandomTests(int iAmount, int iSize, void (*fSort)(LinkedList::Node<T>*& pt
 
     return;
 }
+
+template <typename T>
+void vRandomListsTime(int iAmount, int iSize)
+    {
+        for (int i = 0; i < iAmount; i++)
+        {
+            LinkedList::Node<T>* ptrList = nullptr;
+
+            // Mede o tempo de geração de uma árvore
+            auto aTimeStart = high_resolution_clock::now();
+            ptrList = ptrGenerateRandomList<T>(iSize);
+            auto aTimeEnd = high_resolution_clock::now();
+
+            // E move para cout
+            auto aDuration = duration_cast<microseconds> (aTimeEnd - aTimeStart);
+            cout << aDuration.count() << endl;
+
+            // Limpa da memória
+            LinkedList::vDeleteList<T>(ptrList);
+        }
+    }
 
 }

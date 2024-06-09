@@ -1,5 +1,4 @@
 #include "tree.hpp"
-#include "../Linked Lists/linkedlists.h"
 
 namespace Tree
 {
@@ -151,5 +150,65 @@ namespace Tree
         free(ptrList);
         return nullptr;
     }
+
+}
+
+namespace RandomTrees
+{
+    Tree::Node* ptrGenerateRandomTree(int iSize)
+    {
+        // Cria uma árvore vazia
+        Tree::Node* ptrTree = nullptr;
+
+        // Adiciona iSize elementos aleátorios nela
+        for (int i = 0; i < iSize; i++)
+        {
+            Tree::vInsertNode(ptrTree, randint<int>(1, 100));
+        }
+
+        return ptrTree;
+    }
+
+    void vRandomTests(int iAmount, int iSize, Tree::Node* (*fSearch)(Tree::Node* ptrRoot, int iValue))
+    {
+        for (int i = 0; i < iAmount; i++)
+        {
+            // Gera uma árvore
+            Tree::Node* ptrTree = ptrGenerateRandomTree(iSize);
+
+            // Mede o tempo de uma busca
+            auto aTimeStart = high_resolution_clock::now();
+            fSearch(ptrTree, randint<int>(1, 100));
+            auto aTimeEnd = high_resolution_clock::now();
+
+            // E move para cout
+            auto aDuration = duration_cast<microseconds> (aTimeEnd - aTimeStart);
+            cout << aDuration.count() << endl;
+
+            // Limpa da memória
+            Tree::vDeleteTree(ptrTree);
+        }
+    }
+
+    void vRandomTreesTime(int iAmount, int iSize)
+    {
+        for (int i = 0; i < iAmount; i++)
+        {
+            Tree::Node* ptrTree = nullptr;
+
+            // Mede o tempo de geração de uma árvore
+            auto aTimeStart = high_resolution_clock::now();
+            ptrTree = ptrGenerateRandomTree(iSize);
+            auto aTimeEnd = high_resolution_clock::now();
+
+            // E move para cout
+            auto aDuration = duration_cast<microseconds> (aTimeEnd - aTimeStart);
+            cout << aDuration.count() << endl;
+
+            // Limpa da memória
+            Tree::vDeleteTree(ptrTree);
+        }
+    }
+
 
 }

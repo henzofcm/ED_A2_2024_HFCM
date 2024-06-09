@@ -42,6 +42,9 @@ namespace LinkedList
     void vAddElemEnd(Node<T>*& ptrList, T iValue);
     
     template <typename T>
+    void vRmvElemFront(Node<T>*& ptrList);
+
+    template <typename T>
     void vPrintList(Node<T>* ptrList);
 
     template <typename T>
@@ -58,13 +61,16 @@ namespace LinkedList
 }
 
 /*  ---- FUNÇÕES EXTRAS PARA TESTES ----  */
-namespace RandomTests
+namespace RandomLists
 {
     template <typename T>
     LinkedList::Node<T>* ptrGenerateRandomList(int iSize);
 
     template <typename T>
     void vRandomTests(int iAmount, int iSize, void (*fSort)(LinkedList::Node<T>*& ptrList));
+
+    template <typename T>
+    void vRandomListsTime(int iAmount, int iSize);
 }
 
 #include "linkedlists.tpp"
