@@ -1,14 +1,15 @@
 CC=g++
 .PHONY: all clean
 
-all: main clean
-		main
+all: test
+		test.exe
+		clean
 
-main: tree.o main.cpp
-		$(CC) tree.o main.cpp -o main
+test: tree.o test.cpp
+		$(CC) tree.o test.cpp -o test
 
 tree.o: tree.cpp tree.hpp
 		$(CC) tree.cpp -c
 
 clean:
-		del tree.o main.exe
+		del tree.o test.exe
