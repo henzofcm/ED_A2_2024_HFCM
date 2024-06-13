@@ -2,7 +2,7 @@ CC=g++
 .PHONY: all clean
 
 all: test
-		test.exe
+		./test
 		make clean
 
 test: tree.o test.cpp
@@ -12,4 +12,4 @@ tree.o: tree.cpp tree.hpp
 		$(CC) tree.cpp -c
 
 clean:
-		del tree.o test.exe
+		rm tree.o test

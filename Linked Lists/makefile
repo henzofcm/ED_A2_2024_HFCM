@@ -4,9 +4,9 @@ CC=g++
 all: test clean
 
 test: bubblesort selectsort insertionsort
-		bubblesort > bubbleTime.txt
-		selectsort > selectTime.txt
-		insertionsort > insertionTime.txt
+		./bubblesort > bubbleTime.csv
+		./selectsort > selectTime.csv
+		./insertionsort > insertionTime.csv
 
 bubblesort: bubblesort.cpp
 		$(CC) bubblesort.cpp -o bubblesort
@@ -18,4 +18,4 @@ insertionsort: insertionsort.cpp
 		$(CC) insertionsort.cpp -o insertionsort
 
 clean:
-		del bubblesort.exe selectsort.exe insertionsort.exe
+		rm bubblesort selectsort insertionsort

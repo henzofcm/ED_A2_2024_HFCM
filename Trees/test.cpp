@@ -14,15 +14,15 @@ void vRecordData(std::string strName, int iAmount, int iSize, void (*fFunc)(int 
 
 int main(void)
 {
-    // Mede o tempo de criação de 100 árvores com 1000 elementos
-    vRecordData("treeTime.txt", 100, 10000, RandomTrees::vRandomTreesTime);
+    // Mede o tempo de criação de 100 árvores com 10000 elementos
+    vRecordData("treeTime.csv", 100, 10000, RandomTrees::vRandomTreesTime);
 
-    // Mede o tempo de criação de 100 listas com 1000 elementos
-    vRecordData("listTime.txt", 100, 10000, RandomLists::vRandomListsTime<int>);
+    // Mede o tempo de criação de 100 listas com 10000 elementos
+    vRecordData("listTime.csv", 100, 10000, RandomLists::vRandomListsTime<int>);
 
 
     // Redireciona cout
-    std::ofstream ofFile1("treeDFS.txt");
+    std::ofstream ofFile1("treeDFS.csv");
     std::cout.rdbuf(ofFile1.rdbuf());
 
     // Mede o tempo de busca em árvores por DFS
@@ -31,7 +31,7 @@ int main(void)
 
 
     // Redireciona cout
-    std::ofstream ofFile2("treeBFS.txt");
+    std::ofstream ofFile2("treeBFS.csv");
     std::cout.rdbuf(ofFile2.rdbuf());
 
     // Mede o tempo de busca em árvores por BFS
