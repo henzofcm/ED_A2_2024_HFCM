@@ -3,7 +3,7 @@ CC=g++
 
 all: test
 		test.exe
-		clean
+		make clean
 
 test: tree.o test.cpp
 		$(CC) tree.o test.cpp -o test
